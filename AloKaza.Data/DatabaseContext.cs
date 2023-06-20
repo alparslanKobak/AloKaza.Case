@@ -60,7 +60,8 @@ namespace AloKaza.Data
             {
                 Address = "Adres",
                 Id = 1,
-                Port = 587
+                Port = 587,
+                Email = "yazilim@AloKaza.com"
                
             }
 
