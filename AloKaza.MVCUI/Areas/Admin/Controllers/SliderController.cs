@@ -101,7 +101,7 @@ namespace AloKaza.MVCUI.Areas.Admin.Controllers
                     TempData["Message"] = "<div class='alert alert-danger'>Bir Hata Oluştu... </div>";
                     return RedirectToAction(nameof(Index), "Slider");
                 }
-                   var model = await _serviceSlider.FindAsync(id.Value);
+                var model = await _serviceSlider.FindAsync(id.Value);
 
                 if (model == null)
                 {
@@ -109,7 +109,7 @@ namespace AloKaza.MVCUI.Areas.Admin.Controllers
                     return RedirectToAction(nameof(Index), "Slider");
                 }
 
-                
+
                 return View(model);
             }
             catch (Exception e)
@@ -117,7 +117,7 @@ namespace AloKaza.MVCUI.Areas.Admin.Controllers
 
                 AppLog hata = new()
                 {
-                    Title = "AloKaza.MVCUI.Areas.Admin.Controllers.SliderController.Create.Post",
+                    Title = "AloKaza.MVCUI.Areas.Admin.Controllers.SliderController.Edit.Get",
                     Description = e.Message,
                     Details = e.InnerException.ToString()
 
@@ -133,37 +133,116 @@ namespace AloKaza.MVCUI.Areas.Admin.Controllers
         // POST: SliderController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<ActionResult> Edit(int id, Slider collection, IFormFile? Image, bool? resmiSil)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                if (resmiSil != null && collection.Image != null)
+                {
+                    FileHelper.FileRemover(collection.Image);
+                    collection.Image = null;
+                }
+
+                if (Image != null)
+                {
+                    collection.Image = await FileHelper.FileLoaderAsync(Image);
+                }
+                await _serviceSlider.AddAsync(collection);
+                await _serviceSlider.SaveAsync();
+                TempData["Message"] = "<div class='alert alert-success'>Başarıyla Güncellendi...</div>";
+                return RedirectToAction(nameof(Index), "Slider");
             }
-            catch
+            catch (Exception e)
             {
-                return View();
+
+                AppLog hata = new()
+                {
+                    Title = "AloKaza.MVCUI.Areas.Admin.Controllers.SliderController.Edit.Post",
+                    Description = e.Message,
+                    Details = e.InnerException.ToString()
+
+                };
+                TempData["Message"] = "<div class='alert alert-danger'>Bir Hata Oluştu... </div>";
+
+                await _serviceAppLog.AddAsync(hata);
+                await _serviceAppLog.SaveAsync();
             }
+            return RedirectToAction(nameof(Index), "Slider");
         }
 
         // GET: SliderController/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int? id)
         {
-            return View();
+            try
+            {
+                if (id == null)
+                {
+                    TempData["Message"] = "<div class='alert alert-danger'>Bir Hata Oluştu... </div>";
+                    return RedirectToAction(nameof(Index), "Slider");
+                }
+                var model = await _serviceSlider.FindAsync(id.Value);
+
+                if (model == null)
+                {
+                    TempData["Message"] = "<div class='alert alert-danger'>Bir Hata Oluştu... </div>";
+                    return RedirectToAction(nameof(Index), "Slider");
+                }
+
+
+                return View(model);
+            }
+            catch (Exception e)
+            {
+
+                AppLog hata = new()
+                {
+                    Title = "AloKaza.MVCUI.Areas.Admin.Controllers.SliderController.Delete.Get",
+                    Description = e.Message,
+                    Details = e.InnerException.ToString()
+
+                };
+                TempData["Message"] = "<div class='alert alert-danger'>Bir Hata Oluştu... </div>";
+
+                await _serviceAppLog.AddAsync(hata);
+                await _serviceAppLog.SaveAsync();
+            }
+            return RedirectToAction(nameof(Index), "Slider");
         }
 
         // POST: SliderController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<ActionResult> Delete(int id, Slider collection)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                if (collection.Image is not null)
+                {
+                    FileHelper.FileRemover(collection.Image);
+
+                }
+                _serviceSlider.Delete(collection);
+                await _serviceSlider.SaveAsync();
+                TempData["Message"] = "<div class='alert alert-success'>Başarıyla Silindi...</div>";
+
+                return View(nameof(Index), "Slider");
             }
-            catch
+            catch (Exception e)
             {
-                return View();
+
+                AppLog hata = new()
+                {
+                    Title = "AloKaza.MVCUI.Areas.Admin.Controllers.SliderController.Delete.Post",
+                    Description = e.Message,
+                    Details = e.InnerException.ToString()
+
+                };
+                TempData["Message"] = "<div class='alert alert-danger'>Bir Hata Oluştu... </div>";
+
+                await _serviceAppLog.AddAsync(hata);
+                await _serviceAppLog.SaveAsync();
             }
+            return RedirectToAction(nameof(Index), "Slider");
         }
     }
 }

@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Slider>
+
+@{
+    ViewData["Title"] = "Slide Listesi";
+}
+
+
+
+<p>
+    <a class="btn btn-outline-success" asp-controller="Slider" asp-action="Create">Yeni Slide Oluştur</a>
+</p>
+<hr />
+<table class="m-3 table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Link)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Image)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Link)
+                </td>
+                <td>
+                    <a class="btn btn-primary" asp-controller="Slider" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+
+                    <a class="btn btn-danger" asp-controller="Slider" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
