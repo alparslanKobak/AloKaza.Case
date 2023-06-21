@@ -17,7 +17,7 @@ namespace AloKaza.Data.Configurations
 
             builder.Property(x=> x.Description).HasColumnType("nvarchar(500)").HasMaxLength(500);
 
-            builder.Property(x=> x.Description).HasMaxLength(200);
+            builder.Property(x=> x.Link).HasMaxLength(200);
 
             builder.Property(x=> x.Image).HasMaxLength(100);
         }

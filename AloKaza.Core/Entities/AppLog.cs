@@ -12,7 +12,6 @@ namespace AloKaza.Core.Entities
     {
         public int Id { get; set; }
 
-
         [Display(Name = "Hata")]
         public string Title { get; set; }
 
