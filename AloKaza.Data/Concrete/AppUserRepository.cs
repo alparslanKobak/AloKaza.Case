@@ -11,13 +11,13 @@ namespace AloKaza.Data.Concrete
 {
     public class AppUserRepository : Repository<AppUser>, IAppUserRepository
     {
-        public AppUserRepository(DatabaseContext context, DbSet<AppUser> dbSet) : base(context)
+        public AppUserRepository(DatabaseContext context) : base(context)
         {
         }
 
-        public Task<AppUser> GetAppUserByIncludeAsync(int id)
+        public async Task<AppUser> GetAppUserByIncludeAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _dbSet.Where(u => u.Id == id).AsNoTracking().Include(u => u.Reports).FirstOrDefaultAsync();
         }
     }
 }

@@ -8,7 +8,7 @@ namespace AloKaza.Service.Concrete
 {
     public class Service<T> : Repository<T>, IService<T> where T : class, IEntity, new()
     {
-        public Service(DatabaseContext context, DbSet<T> dbSet) : base(context, dbSet)
+        public Service(DatabaseContext context) : base(context)
         {
 
         }

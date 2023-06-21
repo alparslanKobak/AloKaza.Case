@@ -7,7 +7,7 @@ namespace AloKaza.Data.Concrete
 {
     public class ReportRepository : Repository<Report>, IReportRepository
     {
-        public ReportRepository(DatabaseContext context, DbSet<Report> dbSet) : base(context)
+        public ReportRepository(DatabaseContext context) : base(context)
         {
         }
 

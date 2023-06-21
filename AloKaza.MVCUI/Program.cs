@@ -14,6 +14,12 @@ builder.Services.AddDbContext<DatabaseContext>();
 
 builder.Services.AddTransient(typeof(IService<>), typeof(Service<>)); // Gerektiðinde enjekte edilebilmesi için Service container'ýndan yararlanýldý...
 
+builder.Services.AddTransient<IReportService, ReportService>();
+
+builder.Services.AddTransient<IAppUserService, AppUserService>();
+
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
