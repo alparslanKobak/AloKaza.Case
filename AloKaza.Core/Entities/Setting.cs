@@ -13,7 +13,7 @@ namespace AloKaza.Core.Entities
         public int Id { get; set; }
 
         [Display(Name = "Site Başlık")]
-        public string? Title { get; set; }
+        public string Title { get; set; }
 
         [Display(Name = "Site Açıklama"), DataType(DataType.MultilineText)]
         public string? Description { get; set; }

@@ -11,14 +11,19 @@ namespace AloKaza.Core.Entities
     public class News : IEntity
     {
         public int Id { get; set; }
+
         [Display(Name = "Başlık")]
         public string Title { get; set; }
+
         [Display(Name = "Açıklama")]
         public string? Description { get; set; }
+
         [Display(Name = "Resim")]
         public string? Image { get; set; }
+
         [Display(Name = "Durum")]
         public bool IsActive { get; set; }
+
         [Display(Name = "Ana Sayfada Göster")]
         public bool IsHome { get; set; }
 

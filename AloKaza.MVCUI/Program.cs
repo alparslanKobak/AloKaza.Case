@@ -1,7 +1,18 @@
+
+using AloKaza.Data;
+using AloKaza.Service.Abstract;
+using AloKaza.Service.Concrete;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddSession();
+
+builder.Services.AddDbContext<DatabaseContext>();
+
+builder.Services.AddTransient(typeof(IService<>), typeof(Service<>)); // Gerektiðinde enjekte edilebilmesi için Service container'ýndan yararlanýldý...
 
 var app = builder.Build();
 

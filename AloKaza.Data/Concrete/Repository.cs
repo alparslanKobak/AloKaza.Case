@@ -17,10 +17,10 @@ namespace AloKaza.Data.Concrete
 
         internal DbSet<T> _dbSet;// Boş bir dbSet tanımladık. Repository'e gönderilecek T class'ını parametre olarak verdik.
 
-        public Repository(DatabaseContext context, DbSet<T> dbSet)
+        public Repository(DatabaseContext context)
         {
             _context = context;
-            _dbSet = dbSet;
+            _dbSet = context.Set<T>();
         }
 
         public void Add(T entity)

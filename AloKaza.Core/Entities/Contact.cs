@@ -16,7 +16,8 @@ namespace AloKaza.Core.Entities
         public string Name { get; set; }
 
         [Display(Name = "Soyad")]
-        public string? Surname { get; set; }
+        public string Surname { get; set; }
+
         [EmailAddress, Required(ErrorMessage = "{0} Alanı Gereklidir!")]
         public string Email { get; set; }
 

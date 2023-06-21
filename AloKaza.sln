@@ -5,9 +5,11 @@ VisualStudioVersion = 17.6.33801.468
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AloKaza.MVCUI", "AloKaza.MVCUI\AloKaza.MVCUI.csproj", "{1F3B2DFB-C07D-4155-82A2-74C7D66BDF25}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AloKaza.Core", "AloKaza.Core\AloKaza.Core.csproj", "{C15FAF1C-F399-4054-8B8E-5886BE9E03BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AloKaza.Core", "AloKaza.Core\AloKaza.Core.csproj", "{C15FAF1C-F399-4054-8B8E-5886BE9E03BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AloKaza.Data", "AloKaza.Data\AloKaza.Data.csproj", "{06C813CF-152F-4619-BBE7-40E027CA5675}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AloKaza.Data", "AloKaza.Data\AloKaza.Data.csproj", "{06C813CF-152F-4619-BBE7-40E027CA5675}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AloKaza.Service", "AloKaza.Service\AloKaza.Service.csproj", "{E1271FE0-4C57-44EB-AA9B-6B741A9D5368}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{06C813CF-152F-4619-BBE7-40E027CA5675}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{06C813CF-152F-4619-BBE7-40E027CA5675}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{06C813CF-152F-4619-BBE7-40E027CA5675}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1271FE0-4C57-44EB-AA9B-6B741A9D5368}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1271FE0-4C57-44EB-AA9B-6B741A9D5368}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1271FE0-4C57-44EB-AA9B-6B741A9D5368}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1271FE0-4C57-44EB-AA9B-6B741A9D5368}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

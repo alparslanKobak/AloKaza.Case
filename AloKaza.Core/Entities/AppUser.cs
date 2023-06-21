@@ -28,7 +28,7 @@ namespace AloKaza.Core.Entities
         [Display(Name = "Telefon"), Required(ErrorMessage = "{0} Alanı Gereklidir!"),DataType(DataType.PhoneNumber)]
         public string Phone { get; set; }
 
-        [Display(Name = "Kurumsal/Bireysel")]
+        [Display(Name = "Kurumsal?")]
         public bool IsCorporate { get; set; }
 
         [Display(Name = "Durum")]
