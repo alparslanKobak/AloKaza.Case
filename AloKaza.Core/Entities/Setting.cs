@@ -8,7 +8,7 @@ using System.Xml.Linq;
 
 namespace AloKaza.Core.Entities
 {
-    public class Setting
+    public class Setting : IEntity
     {
         public int Id { get; set; }
 

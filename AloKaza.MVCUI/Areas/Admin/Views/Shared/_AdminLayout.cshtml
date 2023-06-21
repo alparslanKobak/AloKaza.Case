@@ -1,0 +1,49 @@
+﻿@using AloKaza.Service.Abstract;
+@inject IService<Setting> _serviceSetting;
+@{
+    var settings = await _serviceSetting.GetAllAsync(); // Ayarları Database üzerinden çekiyoruz.
+
+    var setting = settings.FirstOrDefault();
+}
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - AloKaza.MVCUI</title>
+    @if (setting.Favicon != null)
+    {
+        <link rel="icon" type="image/x-icon" href="~/Img/@setting.Favicon" />
+    }
+    
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/AloKaza.MVCUI.styles.css" asp-append-version="true" />
+    <link href="~/admin/css/styles.css" rel="stylesheet" />
+
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+</head>
+<body class="sb-nav-fixed">
+
+    <partial name="_navbar"/>
+
+    <div id="layoutSidenav">
+        <partial name="_layoutSidenav_nav" />
+        <div id="layoutSidenav_content">
+            <main role="main" class="pb-3">
+                <div class="container-fluid px-4">
+                    <h1 class="mt-4">@ViewData["Title"]</h1>
+                    @Html.Raw(TempData["Message"])
+                    @RenderBody()
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/admin/js/scripts.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

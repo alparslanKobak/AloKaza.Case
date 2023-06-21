@@ -31,13 +31,5 @@ namespace AloKaza.Core.Entities
         [Display(Name = "Çözüm Detay"),DataType(DataType.MultilineText)]
         public string? SlnDetail { get; set; }
 
-
-
-        public AppLog(string title, string description, string details) // Hata oluşturulurken bizim işimizi kolaylaştıracak bir constructor...
-        {
-            this.Title = title;
-            this.Description = description;
-            this.Details = details;
-        }
     }
 }

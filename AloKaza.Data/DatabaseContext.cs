@@ -11,6 +11,8 @@ namespace AloKaza.Data
 {
     public class DatabaseContext : DbContext
     {
+        public DbSet<AppLog> AppLogs { get; set; }
+
         public DbSet<AppUser> AppUsers { get; set; }
 
         public DbSet<Contact> Contacts { get; set; }
