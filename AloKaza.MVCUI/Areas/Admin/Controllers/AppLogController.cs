@@ -1,11 +1,12 @@
 ﻿using AloKaza.Core.Entities;
 using AloKaza.Service.Abstract;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AloKaza.MVCUI.Areas.Admin.Controllers
 {
-    [Area("Admin")]
+    [Area("Admin"), Authorize(Policy = "AdminPolicy")]
     public class AppLogController : Controller
     {
         private readonly IService<AppLog> _service;
@@ -26,7 +27,7 @@ namespace AloKaza.MVCUI.Areas.Admin.Controllers
             catch (Exception e)
             {
 
-                AppLog hata = new()
+                AppLog hata = new AppLog()
                 {
                     Title = "AloKaza.MVCUI.Areas.Admin.Controllers.AppLogController.Index",
                     Description = e.Message,
@@ -64,7 +65,7 @@ namespace AloKaza.MVCUI.Areas.Admin.Controllers
             catch (Exception e)
             {
 
-                AppLog hata = new()
+                AppLog hata = new AppLog()
                 {
                     Title = "AloKaza.MVCUI.Areas.Admin.Controllers.AppLogController.Details",
                     Description = e.Message,
@@ -126,7 +127,7 @@ namespace AloKaza.MVCUI.Areas.Admin.Controllers
             catch (Exception e)
             {
 
-                AppLog hata = new()
+                AppLog hata = new AppLog()
                 {
                     Title = "AloKaza.MVCUI.Areas.Admin.Controllers.AppLogController.Edit.Get",
                     Description = e.Message,
@@ -154,7 +155,7 @@ namespace AloKaza.MVCUI.Areas.Admin.Controllers
             catch (Exception e)
             {
 
-                AppLog hata = new()
+                AppLog hata = new AppLog()
                 {
                     Title = "AloKaza.MVCUI.Areas.Admin.Controllers.AppLogController.Edit.Post",
                     Description = e.Message,

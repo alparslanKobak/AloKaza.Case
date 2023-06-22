@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Report>
+
+@{
+    ViewData["Title"] = "Tutanak Kayıtları";
+}
+
+
+
+<p>
+    <a asp-controller="Report" asp-action="Create" class="btn btn-outline-primary">Yeni Tutanak Ekle</a>
+</p>
+</p>
+<table class="m-1 table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalDamagePrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AppUser.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsAnyCriminal)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalDamagePrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AppUser.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsAnyCriminal)
+                </td>
+                <td>
+                    <a class="btn btn-primary" asp-controller="Report" asp-action="Edit" asp-route-id="@item.Id">Düzenle</a> |
+                    <a class="btn btn-danger" asp-controller="Report" asp-action="Details" asp-route-id="@item.Id">Detaylar</a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -50,7 +50,7 @@
                     @Html.DisplayFor(modelItem => item.CreateDate)
                 </td>
                 <td>
-                    <img src="@Html.DisplayFor(modelItem => item.Image)" alt="" />
+                    <img src="/Img/@Html.DisplayFor(modelItem => item.Image)" alt="" />
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.IsActive)
@@ -62,8 +62,8 @@
                     @Html.DisplayFor(modelItem => item.OrderNo)
                 </td>
                 <td>
-                    <a class="btn btn-primary" asp-controller="News" asp-action="Edit" asp-route-id="@item.Id">Düzenle</a> |
-                    <a class="btn btn-danger" asp-controller="News" asp-action="Delete" asp-route-id="@item.Id">Sil</a>
+                    <a class="btn btn-primary" asp-controller="News" asp-action="Edit" asp-route-id="@item.Id">Düzenle</a> 
+                    
                 </td>
             </tr>
         }

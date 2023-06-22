@@ -46,6 +46,10 @@ namespace AloKaza.Core.Entities
 
         public bool IsAnyCriminal { get; set; }
 
+        [Display(Name = "Eklenme Tarihi"), ScaffoldColumn(false)]
+        public DateTime? CreateDate { get; set; } = DateTime.Now;
+
+
         [ScaffoldColumn(false)] // Her Tutanağın eşsiz olmasını sağladık.
         public Guid ReportGuid { get; set; } = Guid.NewGuid();
     }

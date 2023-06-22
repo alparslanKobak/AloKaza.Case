@@ -2,12 +2,13 @@
 using AloKaza.MVCUI.Utils;
 using AloKaza.Service.Abstract;
 using AloKaza.Service.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AloKaza.MVCUI.Areas.Admin.Controllers
 {
-    [Area("Admin")]
+    [Area("Admin"), Authorize(Policy = "AdminPolicy")]
     public class SliderController : Controller
     {
         private readonly IService<Slider> _serviceSlider;
@@ -30,7 +31,7 @@ namespace AloKaza.MVCUI.Areas.Admin.Controllers
             catch (Exception e)
             {
 
-                AppLog hata = new()
+                AppLog hata = new AppLog()
                 {
                     Title = "AloKaza.MVCUI.Areas.Admin.Controllers.SliderController.Index",
                     Description = e.Message,
@@ -76,7 +77,7 @@ namespace AloKaza.MVCUI.Areas.Admin.Controllers
             catch (Exception e)
             {
 
-                AppLog hata = new()
+                AppLog hata = new AppLog()
                 {
                     Title = "AloKaza.MVCUI.Areas.Admin.Controllers.SliderController.Create.Post",
                     Description = e.Message,
@@ -115,7 +116,7 @@ namespace AloKaza.MVCUI.Areas.Admin.Controllers
             catch (Exception e)
             {
 
-                AppLog hata = new()
+                AppLog hata = new AppLog()
                 {
                     Title = "AloKaza.MVCUI.Areas.Admin.Controllers.SliderController.Edit.Get",
                     Description = e.Message,
@@ -155,7 +156,7 @@ namespace AloKaza.MVCUI.Areas.Admin.Controllers
             catch (Exception e)
             {
 
-                AppLog hata = new()
+                AppLog hata = new AppLog()
                 {
                     Title = "AloKaza.MVCUI.Areas.Admin.Controllers.SliderController.Edit.Post",
                     Description = e.Message,
@@ -232,7 +233,7 @@ namespace AloKaza.MVCUI.Areas.Admin.Controllers
 
 
                 ModelState.AddModelError("","Bir Hata Oluştu : " + e.Message);
-                AppLog hata = new()
+                AppLog hata = new AppLog()
                 {
                     Title = "AloKaza.MVCUI.Areas.Admin.Controllers.SliderController.Delete.Post",
                     Description = e.Message,

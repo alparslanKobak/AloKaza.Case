@@ -1,12 +1,13 @@
 ﻿using AloKaza.Core.Entities;
 using AloKaza.MVCUI.Utils;
 using AloKaza.Service.Abstract;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AloKaza.MVCUI.Areas.Admin.Controllers
 {
-    [Area("Admin")]
+    [Area("Admin"), Authorize(Policy = "AdminPolicy")]
     public class NewsController : Controller
     {
         private readonly IService<News> _serviceNews;
@@ -29,7 +30,7 @@ namespace AloKaza.MVCUI.Areas.Admin.Controllers
             catch (Exception e)
             {
 
-                AppLog hata = new()
+                AppLog hata = new AppLog()
                 {
                     Title = "AloKaza.MVCUI.Areas.Admin.Controllers.NewsController.Index",
                     Description = e.Message,
@@ -70,12 +71,12 @@ namespace AloKaza.MVCUI.Areas.Admin.Controllers
                 await _serviceNews.AddAsync(collection);
                 await _serviceNews.SaveAsync();
                 TempData["Message"] = "<div class='alert alert-success'>Başarıyla Oluşturuldu...</div>";
-                return RedirectToAction(nameof(Index), "Slider");
+                return RedirectToAction(nameof(Index), "News");
             }
             catch (Exception e)
             {
 
-                AppLog hata = new()
+                AppLog hata = new AppLog()
                 {
                     Title = "AloKaza.MVCUI.Areas.Admin.Controllers.NewsController.Create.Post",
                     Description = e.Message,
@@ -114,7 +115,7 @@ namespace AloKaza.MVCUI.Areas.Admin.Controllers
             catch (Exception e)
             {
 
-                AppLog hata = new()
+                AppLog hata = new AppLog()
                 {
                     Title = "AloKaza.MVCUI.Areas.Admin.Controllers.NewsController.Edit.Get",
                     Description = e.Message,
@@ -154,7 +155,7 @@ namespace AloKaza.MVCUI.Areas.Admin.Controllers
             catch (Exception e)
             {
 
-                AppLog hata = new()
+                AppLog hata = new AppLog()
                 {
                     Title = "AloKaza.MVCUI.Areas.Admin.Controllers.NewsController.Edit.Post",
                     Description = e.Message,
@@ -166,7 +167,7 @@ namespace AloKaza.MVCUI.Areas.Admin.Controllers
                 await _serviceAppLog.AddAsync(hata);
                 await _serviceAppLog.SaveAsync();
             }
-            return RedirectToAction(nameof(Index), "Slider");
+            return RedirectToAction(nameof(Index), "News");
         }
 
         // GET: NewsController/Delete/5
@@ -197,7 +198,7 @@ namespace AloKaza.MVCUI.Areas.Admin.Controllers
                 {
                     Title = "AloKaza.MVCUI.Areas.Admin.Controllers.NewsController.Edit.Get",
                     Description = e.Message,
-                    Details = e.InnerException.ToString()
+                    Details = e.ToString()
 
                 };
                 TempData["Message"] = "<div class='alert alert-danger'>Bir Hata Oluştu... </div>";

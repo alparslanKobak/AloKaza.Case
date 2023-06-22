@@ -1,12 +1,13 @@
 ﻿using AloKaza.Core.Entities;
 using AloKaza.MVCUI.Utils;
 using AloKaza.Service.Abstract;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AloKaza.MVCUI.Areas.Admin.Controllers
 {
-    [Area("Admin")]
+    [Area("Admin"), Authorize(Policy = "AdminPolicy")]
     public class SettingsController : Controller
     {
         private readonly IService<Setting> _serviceSettings;
@@ -29,7 +30,7 @@ namespace AloKaza.MVCUI.Areas.Admin.Controllers
             catch (Exception e)
             {
 
-                AppLog hata = new()
+                AppLog hata = new AppLog()
                 {
                     Title = "AloKaza.MVCUI.Areas.Admin.Controllers.SettingsController.Index",
                     Description = e.Message,
@@ -98,7 +99,7 @@ namespace AloKaza.MVCUI.Areas.Admin.Controllers
             catch (Exception e)
             {
 
-                AppLog hata = new()
+                AppLog hata = new AppLog()
                 {
                     Title = "AloKaza.MVCUI.Areas.Admin.Controllers.SettingsController.Edit.Get",
                     Description = e.Message,
@@ -137,7 +138,7 @@ namespace AloKaza.MVCUI.Areas.Admin.Controllers
             catch (Exception e)
             {
 
-                AppLog hata = new()
+                AppLog hata = new AppLog()
                 {
                     Title = "AloKaza.MVCUI.Areas.Admin.Controllers.SettingsController.Edit.Post",
                     Description = e.Message,
