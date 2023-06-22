@@ -1,4 +1,6 @@
-﻿using AloKaza.MVCUI.Models;
+﻿using AloKaza.Core.Entities;
+using AloKaza.MVCUI.Models;
+using AloKaza.Service.Abstract;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -6,23 +8,31 @@ namespace AloKaza.MVCUI.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly IService<Contact> _serviceContact;
+        private readonly IService<AppLog> _serviceAppLog;
+        private readonly IService<News> _serviceNews;
+        private readonly IService<Slider> _serviceSlider;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IService<Contact> serviceContact, IService<AppLog> serviceAppLog, IService<News> serviceNews, IService<Slider> serviceSlider)
         {
-            _logger = logger;
+            _serviceContact = serviceContact;
+            _serviceAppLog = serviceAppLog;
+            _serviceNews = serviceNews;
+            _serviceSlider = serviceSlider;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var model = new HomePageViewModel()
+            {
+                Sliders = await _serviceSlider.GetAllAsync(),
+                News = await _serviceNews.GetAllAsync(n=> n.IsActive && n.IsHome)
+                
+               
+            };
+            return View(model);
         }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
+       
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
